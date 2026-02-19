@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Invoicing System - Professional Invoice Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero .primary-btn {
+            background: #ff6b6b;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .hero .secondary-btn {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: 2px solid white;
+        }
+
+        .hero .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .steps-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            position: relative;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .step p {
+            color: #666;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .benefits-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .benefits-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .benefits-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .benefits-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+        }
+
+        /* Loan Amount Calculator */
+        .calculator {
+            padding: 6rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .calculator-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .result {
+            background: #f0f4ff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .result p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .result-amount {
+            font-size: 2rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f0f0f0;
+        }
+
+        .faq-question h4 {
+            color: #333;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #667eea;
+            transition: transform 0.3s;
+        }
+
+        .faq-toggle.active {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .faq-answer.show {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .final-cta .cta-button {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #444;
+            padding-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero .primary-btn,
+            .hero .secondary-btn {
+                width: 100%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .benefits-content {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .calculator-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">� InvoiceHub</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+           
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Manage Your Invoices Effortlessly</h1>
+            <p>Streamline your billing workflow with our modern online invoicing system. Create, send, and track invoices in minutes.</p>
+            <div class="hero-buttons">
+                <button class="cta-button primary-btn" onclick="startfree()">Get Started Free</button>
+               
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Why Choose Our Invoicing System?</h2>
+        <p class="section-subtitle">Everything you need for professional invoice management</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Create Invoices Instantly</h3>
+                <p>Generate professional invoices in seconds with customizable templates. No coding required.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure & Reliable</h3>
+                <p>Enterprise-grade security with automatic backups. Your data is always protected and accessible.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Smart Automation</h3>
+                <p>Automate recurring invoices, reminders, and payment tracking. Save hours every month.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Real-Time Analytics</h3>
+                <p>Track revenue, outstanding invoices, and payment trends with comprehensive dashboards.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Expert Support</h3>
+                <p>24/7 customer support team ready to help you succeed. Available via chat, email, and phone.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Scale Your Business</h3>
+                <p>From freelancers to enterprises. Flexible plans that grow with your business needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Simple process to start invoicing in minutes</p>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Create Account</h3>
+                <p>Sign up for free in seconds. No credit card required to get started.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Set Up Your Business</h3>
+               
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Create & Send Invoices</h3>
+                <p>Generate invoices and send them instantly to your clients via email.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Track & Get Paid</h3>
+                <p>Monitor payment status and automate reminders for overdue invoices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="benefits-content">
+            <div class="benefits-text">
+                <h2>Transform Your Billing Process</h2>
+                <p>Streamline invoicing and improve your cash flow with our comprehensive management platform.</p>
+                <ul class="benefits-list">
+                    <li>Save 10+ hours per week on billing tasks</li>
+                    <li>Automated payment reminders reduce overdue invoices by 40%</li>
+                    <li>Professional invoice templates for all business types</li>
+                    <li>Detailed financial reports and insights</li>
+                    <li>Seamless integration with accounting software</li>
+                </ul>
+            </div>
+            <div class="benefits-stats">
+                <div class="stat">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100k</div>
+                    <div class="stat-label">Invoices Processed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime Guaranteed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">User Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Invoice Estimator -->
+    <section class="calculator" id="calculator">
+        <div class="calculator-container">
+            <h2>Invoice Time Savings</h2>
+            <div class="input-group">
+                <label for="invoice-amount">Monthly Invoices (#)</label>
+                <input type="number" id="invoice-amount" placeholder="Enter number of invoices" min="0" value="50">
+            </div>
+            <div class="input-group">
+                <label for="terms">Time per Invoice (minutes)</label>
+                <input type="number" id="terms" placeholder="15" min="5" max="60" value="15">
+            </div>
+            <div class="input-group">
+                <label for="rate">Your Hourly Rate (PHP)</label>
+                <input type="number" id="rate" placeholder="50" min="10" max="500" step="5" value="50">
+            </div>
+            <button class="cta-button" style="width: 100%;" onclick="calculateSavings()">Calculate Savings</button>
+            <div class="result" id="result">
+                <p>Monthly Time Savings:</p>
+                <div class="result-amount" id="loan-amount">0 hours</div>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">Worth approximately PHP0</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Can I create custom invoice templates?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Our system includes pre-designed professional templates that you can fully customize with your logo, colors, and business information.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Do you offer recurring/subscription invoices?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! Set up automatic recurring invoices for regular clients. The system will send them on schedule and track payments automatically.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>What payment methods can clients use?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We support credit cards, bank transfers, digital wallets, and more. You can configure which payment methods to accept for your invoices.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Is there a free trial or demo?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Sign up for a free account today. No credit card required. You can start creating and sending invoices immediately on our free plan.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>Can I integrate with my accounting software?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We integrate with popular accounting software like QuickBooks, Xero, and Wave. Automated data sync saves you time and reduces errors.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <h4>How is my data protected?</h4>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Your data is protected with enterprise-grade encryption, automated daily backups, and compliance with industry standards. We maintain 99.9% uptime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <h2>Ready to Simplify Your Invoicing?</h2>
+        <p>Join 50,000+ businesses using InvoiceHub to manage their billing</p>
+        
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">About Us</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms & Conditions</a>
+                <a href="#security">Security</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 InvoiceHub. All rights reserved. | Making invoicing simple for businesses everywhere</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Functionality
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('show');
+                }
+            });
+            
+            document.querySelectorAll('.faq-toggle').forEach(item => {
+                if (item !== toggle) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('show');
+            toggle.classList.toggle('active');
+        }
+
+        // Invoice Savings Estimator
+        function calculateSavings() {
+            const numInvoices = parseFloat(document.getElementById('invoice-amount').value);
+            const timePerInvoice = parseFloat(document.getElementById('terms').value);
+            const hourlyRate = parseFloat(document.getElementById('rate').value);
+            
+            if (!numInvoices || numInvoices <= 0) {
+                alert('Please enter a valid number of invoices');
+                return;
+            }
+            
+            // Calculate total time spent manually
+            const totalMinutes = numInvoices * timePerInvoice;
+            const totalHours = totalMinutes / 60;
+            
+            // Assume our system reduces time by 80%
+            const savedHours = totalHours * 0.8;
+            const savedValue = savedHours * hourlyRate;
+            
+            // Display result
+            const resultElement = document.getElementById('result');
+            const loanAmountElement = document.getElementById('loan-amount');
+            loanAmountElement.innerHTML = savedHours.toFixed(1) + ' hours<p style="margin-top: 1rem; font-size: 0.9rem;">Worth approximately $' + savedValue.toFixed(2) + '</p>';
+            
+            resultElement.classList.add('show');
+        }
+
+        // Allow Enter key in calculator inputs
+        document.getElementById('invoice-amount').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calculateSavings();
+        });
+
+        document.getElementById('rate').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calculateSavings();
+        });
+
+        document.getElementById('terms').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') calculateSavings();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for feature cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .step').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navigate to demo page
+        function viewDemo() {
+            window.location.href = 'dem.html';
+        }
+        function startfree() {
+            window.location.href = 'signup.html';
+        }
+    </script>
+</body>
+</html>

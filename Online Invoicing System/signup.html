@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Create Free Account | Online Invoicing System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .signup-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .signup-left {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .signup-left h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            opacity: 0.95;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .testimonial p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .signup-right {
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .signup-header {
+            margin-bottom: 2rem;
+        }
+
+        .signup-header h1 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .signup-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .password-strength {
+            margin-top: 0.5rem;
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            background: #ff6b6b;
+            transition: all 0.3s;
+        }
+
+        .password-strength-bar.weak {
+            width: 33%;
+            background: #ff6b6b;
+        }
+
+        .password-strength-bar.medium {
+            width: 66%;
+            background: #ffa500;
+        }
+
+        .password-strength-bar.strong {
+            width: 100%;
+            background: #11998e;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.8rem;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .checkbox-group a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .signup-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .divider {
+            margin: 1.5rem 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            color: #999;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .social-signup {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 0.9rem;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+
+        .login-link {
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 1.5rem;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #ff6b6b;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: #11998e;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .signup-container {
+                grid-template-columns: 1fr;
+            }
+
+            .signup-left {
+                padding: 2rem;
+                display: none;
+            }
+
+            .signup-right {
+                padding: 2rem;
+            }
+
+            .signup-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .social-signup {
+                flex-direction: column;
+            }
+
+            .social-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            .signup-right {
+                padding: 1.5rem;
+            }
+
+            .signup-header h1 {
+                font-size: 1.3rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="tel"],
+            select {
+                padding: 0.8rem;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <!-- Left Side - Features -->
+        <div class="signup-left">
+            <h2>Start Creating Professional Invoices Today</h2>
+            <ul class="features-list">
+                <li>Create unlimited invoices</li>
+                <li>24/7 customer support</li>
+            </ul>
+            <div class="testimonial">
+                <p>"InvoiceHub has transformed how we manage billing. We've saved 15+ hours per week!"</p>
+                <div class="testimonial-author">— Jonatan Biwang, CEO at Tech Innovations</div>
+            </div>
+        </div>
+
+        <!-- Right Side - Signup Form -->
+        <div class="signup-right">
+            <div class="signup-header">
+                <span class="price-badge">✓ FREE ACCOUNT</span>
+                <h1>Create Your Account</h1>
+                <p>Join 50,000+ businesses managing their invoices with InvoiceHub</p>
+            </div>
+
+            <div class="success-message" id="successMsg">
+                ✓ Account created successfully! Redirecting...
+            </div>
+
+            <form id="signupForm">
+                
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <!-- Form Fields -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <div class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <div class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" name="company" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required onchange="checkPasswordStrength(this.value)">
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="strengthBar"></div>
+                    </div>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="industry">Industry (Optional)</label>
+                    <select id="industry" name="industry">
+                        <option value="">Select your industry</option>
+                        <option value="freelance">Freelance</option>
+                        <option value="tech">Technology</option>
+                        <option value="consulting">Consulting</option>
+                        <option value="retail">Retail</option>
+                        <option value="services">Services</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="education">Education</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">Send me tips and updates about InvoiceHub (optional)</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="signup-btn">Create Free Account</button>
+
+
+                <!-- Login Link -->
+                <div class="login-link">
+                    Already have an account? <a href="signin.html">Sign in here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Password strength checker
+        function checkPasswordStrength(password) {
+            const strengthBar = document.getElementById('strengthBar');
+            let strength = 0;
+
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+            strengthBar.classList.remove('weak', 'medium', 'strong');
+
+            if (strength <= 1) {
+                strengthBar.classList.add('weak');
+            } else if (strength === 2) {
+                strengthBar.classList.add('medium');
+            } else {
+                strengthBar.classList.add('strong');
+            }
+        }
+
+        // Form validation
+        function validateForm() {
+            const form = document.getElementById('signupForm');
+            // exclude checkboxes from this required-value check because they're handled separately
+            const inputs = form.querySelectorAll('input[required]:not([type="checkbox"]), select[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                const formGroup = input.closest('.form-group');
+                // safely handle absence of a .form-group wrapper
+                const errorMsg = formGroup ? formGroup.querySelector('.error-message') : null;
+                const value = (input.type === 'email' || input.type === 'text' || input.type === 'password' || input.tagName.toLowerCase() === 'select') ? (input.value || '').trim() : input.value;
+
+                if (!value) {
+                    if (formGroup) {
+                        formGroup.classList.add('error');
+                        if (errorMsg) { errorMsg.textContent = (input.name || 'This field') + ' is required'; errorMsg.classList.add('show'); }
+                    }
+                    isValid = false;
+                } else {
+                    if (formGroup) {
+                        formGroup.classList.remove('error');
+                        if (errorMsg) { errorMsg.classList.remove('show'); }
+                    }
+                }
+            });
+
+            // Email validation
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email.value && !emailRegex.test(email.value)) {
+                const formGroup = email.closest('.form-group');
+                const errorMsg = formGroup.querySelector('.error-message');
+                formGroup.classList.add('error');
+                errorMsg.textContent = 'Please enter a valid email address';
+                errorMsg.classList.add('show');
+                isValid = false;
+            }
+
+            // Password match
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (password.value !== confirmPassword.value) {
+                const formGroup = confirmPassword.closest('.form-group');
+                const errorMsg = formGroup.querySelector('.error-message');
+                formGroup.classList.add('error');
+                errorMsg.textContent = 'Passwords do not match';
+                errorMsg.classList.add('show');
+                isValid = false;
+            }
+
+            // Terms checkbox
+            if (!document.getElementById('terms').checked) {
+                alert('Please agree to the Terms of Service and Privacy Policy');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+       
+
+
+        // Real-time validation
+        document.getElementById('email').addEventListener('change', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const formGroup = this.closest('.form-group');
+            const errorMsg = formGroup.querySelector('.error-message');
+
+            if (this.value && !emailRegex.test(this.value)) {
+                formGroup.classList.add('error');
+                errorMsg.textContent = 'Please enter a valid email address';
+                errorMsg.classList.add('show');
+            } else if (this.value) {
+                formGroup.classList.remove('error');
+                errorMsg.classList.remove('show');
+            }
+        });
+
+        document.getElementById('password').addEventListener('change', function() {
+            checkPasswordStrength(this.value);
+        });
+
+        // Form submission handler - Save to XAMPP
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+
+            // Get form data
+            const formData = new FormData(this);
+            const data = {
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
+                company: formData.get('company'),
+                email: formData.get('email'),
+                password: formData.get('password'),
+                industry: formData.get('industry'),
+                newsletter: formData.get('newsletter') ? 1 : 0
+            };
+
+            try {
+                // Send data to backend
+                const response = await fetch('save_signup.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Show success message
+                    const successMsg = document.getElementById('successMsg');
+                    successMsg.classList.add('show');
+                    
+                    // Clear form
+                    document.getElementById('signupForm').reset();
+                    
+                    // Redirect after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'signin.html';
+                    }, 2000);
+                } else {
+                    alert('Error: ' + (result.message || 'Failed to save account'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error saving account. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
